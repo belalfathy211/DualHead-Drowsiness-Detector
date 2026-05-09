@@ -1,0 +1,31 @@
+import os
+from torch.utils.data import Dataset
+from PIL import Image
+
+class MouthsDataset(Dataset):
+    def __init__(self, root, transform=None):
+        self.transform = transform
+        self.images_paths = []
+        self.labels = []
+        self.classes = os.listdir(root)
+        for i in self.classes:
+            class_images = os.listdir(root + "/" + i)
+            for j in class_images:
+                self.images_paths.append(root + "/" + i + "/" + j)
+                self.labels.append(self.classes.index(i))
+
+    def __len__(self):
+        return len(self.images_paths)
+
+    def __getitem__(self, item):
+        img = Image.open(self.images_paths[item]).convert("RGB")
+        if self.transform:
+            img = self.transform(img)
+        return img, self.labels[item]
+
+
+if __name__ == "__main__":
+    data = MouthsDataset("/home/belal/projects/TwoHead/data/Yawn/Train")
+    X, y = data[780]
+    print(y)
+    X.show()
