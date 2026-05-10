@@ -1,7 +1,7 @@
 import torch
 from torch.utils.data import DataLoader
 from torchvision import transforms
-from eye_dataset import FolderDataset
+from FolderDataset import FolderDataset
 from model import TwoHeadModel
 
 EPOCHS = 15

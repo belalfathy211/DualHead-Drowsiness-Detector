@@ -2,9 +2,9 @@ import os
 from torch.utils.data import Dataset
 from PIL import Image
 
-class MouthsDataset(Dataset):
+class FolderDataset(Dataset):
     def __init__(self, root, transform=None):
-        self.transform = transform
+        self.transform=transform
         self.images_paths = []
         self.labels = []
         self.classes = os.listdir(root)
@@ -25,7 +25,7 @@ class MouthsDataset(Dataset):
 
 
 if __name__ == "__main__":
-    data = MouthsDataset("/home/belal/projects/TwoHead/data/Yawn/Train")
-    X, y = data[780]
+    data = FolderDataset("/home/belal/projects/Multi-Head CNN/data/eye/Train")
+    X, y = data[280]
     print(y)
     X.show()
