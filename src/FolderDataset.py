@@ -2,9 +2,10 @@ import os
 from torch.utils.data import Dataset
 from PIL import Image
 
+
 class FolderDataset(Dataset):
     def __init__(self, root, transform=None):
-        self.transform=transform
+        self.transform = transform
         self.images_paths = []
         self.labels = []
         self.classes = os.listdir(root)
